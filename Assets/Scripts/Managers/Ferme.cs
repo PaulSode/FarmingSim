@@ -6,7 +6,7 @@ public class Ferme : MonoBehaviour
     public static Ferme instance;
 
     [SerializeField] private GameObject prefabChamp;
-    private readonly List<GameObject> _champs = new();
+    private List<GameObject> _champs = new();
 
     private void Awake()
     {

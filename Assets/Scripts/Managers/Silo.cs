@@ -7,12 +7,14 @@ using UnityEngine;
 public class Silo : MonoBehaviour
 {
     public static Silo instance;
+    public bool isLoaded = false;
+    public bool autoSell = false;
     
     [SerializeField]
     private int _maxStockage = 100000;
 
-    public Dictionary<Culture, int> cultures;
-    public Dictionary<Produit, int> produits;
+    public Dictionary<Culture, int> cultures =  new ();
+    public Dictionary<Produit, int> produits = new ();
 
     private void Awake()
     {
@@ -23,7 +25,18 @@ public class Silo : MonoBehaviour
         }
 
         instance = this;
-        Garage.instance.OnLoadComplete += LoadCultures;
+    }
+
+    private void Start()
+    {
+        if (Garage.instance.isLoaded)
+        {
+            LoadCultures();
+        }
+        else
+        {
+            Garage.instance.OnLoadComplete += LoadCultures;
+        }
     }
 
     public event Action OnLoadComplete;
@@ -96,17 +109,25 @@ public class Silo : MonoBehaviour
             produits.Add(produit, 0);
         }
 
+        isLoaded = true;
         OnLoadComplete?.Invoke();
     }
 
     public void AddProduit(Produit produit, int quantite)
     {
-        var espaceDisponible = _maxStockage - GetTotalQuantite();
-        var quantiteAjoutee = 0;
-        quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
+        if (!autoSell)
+        {
+            var espaceDisponible = _maxStockage - GetTotalQuantite();
+            var quantiteAjoutee = 0;
+            quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
 
-        if (!produits.TryAdd(produit, quantiteAjoutee))
-            produits[produit] += quantiteAjoutee;
+            if (!produits.TryAdd(produit, quantiteAjoutee))
+                produits[produit] += quantiteAjoutee;
+        }
+        else
+        {
+            SellProduct(produit, quantite);
+        }
     }
     
     public int GetProduitValue(Produit produit)
@@ -143,6 +164,15 @@ public class Silo : MonoBehaviour
     public bool HasSpace()
     {
         return GetTotalQuantite() < _maxStockage;
+    }
+
+    public void ToggleAutoSell()
+    {
+        autoSell = !autoSell;
+        if (autoSell)
+        {
+            SellAllProducts();
+        }
     }
 
 

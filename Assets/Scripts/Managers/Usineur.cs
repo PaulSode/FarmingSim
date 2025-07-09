@@ -8,7 +8,7 @@ public class Usineur : MonoBehaviour
     public static Usineur instance;
     public List<UsineJson> usinesList;
     [SerializeField] private GameObject prefabUsine;
-    public List<GameObject> _usines = new ();
+    private List<GameObject> _usines = new ();
     
     private void Awake()
     {
@@ -19,7 +19,18 @@ public class Usineur : MonoBehaviour
         }
 
         instance = this;
-        Silo.instance.OnLoadComplete += LoadUsines;
+    }
+
+    private void Start()
+    {
+        if (Silo.instance.isLoaded)
+        {
+            LoadUsines();
+        }
+        else
+        {
+            Silo.instance.OnLoadComplete += LoadUsines;
+        }
     }
 
 

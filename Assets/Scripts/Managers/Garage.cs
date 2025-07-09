@@ -6,10 +6,11 @@ using UnityEngine;
 public class Garage : MonoBehaviour
 {
     public static Garage instance;
+    public bool isLoaded =  false;
 
-    private readonly Dictionary<Vehicule, int> _quantitesVehicules = new();
+    private Dictionary<Vehicule, int> _quantitesVehicules = new();
 
-    public List<Vehicule> vehiculeList;
+    public List<Vehicule> vehiculeList = new ();
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class Garage : MonoBehaviour
             vehiculeList.Add(vehicule);
         }
 
+        isLoaded = true;
         OnLoadComplete?.Invoke();
     }
 
