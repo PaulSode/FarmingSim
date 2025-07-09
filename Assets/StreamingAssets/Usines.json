@@ -1,0 +1,79 @@
+[
+  {
+    "nom": "Moulin à huile",
+    "intrants": ["tournesol", "olive", "canola", "riz"],
+    "produit": "huile",
+    "multiplicateur": 2,
+    "prix": 5000
+  },
+  {
+    "nom": "Scierie",
+    "intrants": ["peuplier"],
+    "produit": "planches",
+    "multiplicateur": 2,
+    "prix": 4000
+  },
+  {
+    "nom": "Fabrique de wagons",
+    "intrants": ["planches"],
+    "produit": "wagons",
+    "multiplicateur": 4,
+    "prix": 8000
+  },
+  {
+    "nom": "Usine de jouets",
+    "intrants": ["planches"],
+    "produit": "jouets",
+    "multiplicateur": 3,
+    "prix": 7000
+  },
+  {
+    "nom": "Moulin à grains",
+    "intrants": ["blé", "orge", "sorgho"],
+    "produit": "farine",
+    "multiplicateur": 2,
+    "prix": 4500
+  },
+  {
+    "nom": "Raffinerie de sucre",
+    "intrants": ["betterave", "canne à sucre"],
+    "produit": "sucre",
+    "multiplicateur": 2,
+    "prix": 6000
+  },
+  {
+    "nom": "Filature",
+    "intrants": ["coton"],
+    "produit": "tissu",
+    "multiplicateur": 2,
+    "prix": 5500
+  },
+  {
+    "nom": "Atelier de couture",
+    "intrants": ["tissu"],
+    "produit": "vêtements",
+    "multiplicateur": 2,
+    "prix": 7500
+  },
+  {
+    "nom": "Boulangerie",
+    "intrants": ["sucre", "farine"],
+    "produit": "gâteau",
+    "multiplicateur": 6,
+    "prix": 9000
+  },
+  {
+    "nom": "Usine de chips",
+    "intrants": ["pomme de terre", "huile"],
+    "produit": "chips",
+    "multiplicateur": 6,
+    "prix": 8500
+  },
+  {
+    "nom": "Cave à vin",
+    "intrants": ["raisin"],
+    "produit": "vin",
+    "multiplicateur": 2,
+    "prix": 10000
+  }
+]

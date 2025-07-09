@@ -5,99 +5,97 @@ using UnityEngine;
 
 public class Garage : MonoBehaviour
 {
-    public static Garage Instance;
+    public static Garage instance;
+
+    private readonly Dictionary<Vehicule, int> _quantitesVehicules = new();
 
     public List<Vehicule> vehiculeList;
 
-    public event Action onLoadComplete;
-
-
-    [System.Serializable]
-    public class VehiculeJson
+    private void Awake()
     {
-        public string nom;
-        public int taille;
-        public int prix;
-    }
-
-    void Awake()
-    {
-        if (Instance != null)
+        if (instance != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
 
-        Instance = this;
+        instance = this;
         ChargerVehicules();
     }
 
+    public event Action OnLoadComplete;
+
     private void ChargerVehicules()
     {
-    string path = Path.Combine(Application.streamingAssetsPath, "Vehicules.json");
+        var path = Path.Combine(Application.streamingAssetsPath, "Vehicules.json");
 
-    if (!File.Exists(path))
-    {
-        Debug.LogError("Fichier vehicules.json non trouvé :(");
-        return;
-    }
+        if (!File.Exists(path))
+        {
+            Debug.LogError("Fichier vehicules.json non trouvé :(");
+            return;
+        }
 
-    string json = File.ReadAllText(path);
+        var json = File.ReadAllText(path);
 
-    VehiculeJson[] vehicules = JsonHelper.FromJson<VehiculeJson>(json);
+        var vehicules = JsonHelper.FromJson<VehiculeJson>(json);
 
         foreach (var v in vehicules)
         {
-            Vehicule vehicule = new Vehicule();
-            vehicule.nom = v.nom;
-            vehicule.taille = v.taille;
-            vehicule.prix = v.prix;
+            var vehicule = new Vehicule
+            {
+                nom = v.nom,
+                taille = v.taille,
+                prix = v.prix
+            };
             vehiculeList.Add(vehicule);
         }
-        onLoadComplete?.Invoke();
-    }
 
-private Dictionary<Vehicule, int> quantitesVehicules = new();
+        OnLoadComplete?.Invoke();
+    }
 
     public void AcheterVehicule(Vehicule vehicule)
     {
-        if (Banque.Instance.money >= vehicule.prix)
+        if (Banque.instance.GetMoney() >= vehicule.prix)
         {
-            Banque.Instance.AddMoney(-vehicule.prix);
+            Banque.instance.AddMoney(-vehicule.prix);
 
-            if (!quantitesVehicules.ContainsKey(vehicule)) quantitesVehicules[vehicule] = 0;
+            if (!_quantitesVehicules.ContainsKey(vehicule)) _quantitesVehicules[vehicule] = 0;
 
-            quantitesVehicules[vehicule]++;
+            _quantitesVehicules[vehicule]++;
         }
     }
 
-public bool PeutCultiver(Culture culture)
-{
-    foreach (var vehicule in culture.vehicules)
+    public bool PeutCultiver(Culture culture)
     {
-        if (!quantitesVehicules.ContainsKey(vehicule) || quantitesVehicules[vehicule] <= 0)
-            return false;
+        foreach (var vehicule in culture.vehicules)
+            if (!_quantitesVehicules.ContainsKey(vehicule) || _quantitesVehicules[vehicule] <= 0)
+                return false;
+        return true;
     }
-    return true;
-}
 
 
     public bool UtiliserVehicules(Culture culture)
-{
-    if (!PeutCultiver(culture)) return false;
-
-    foreach (var vehicule in culture.vehicules)
     {
-        quantitesVehicules[vehicule]--;
-    }
+        if (!PeutCultiver(culture)) return false;
 
-    return true;
-}
+        foreach (var vehicule in culture.vehicules) _quantitesVehicules[vehicule]--;
+
+        return true;
+    }
 
 
     public void RendreVehicule(Vehicule vehicule)
     {
-        if (quantitesVehicules.ContainsKey(vehicule))
-            quantitesVehicules[vehicule]++;
+        if (_quantitesVehicules.ContainsKey(vehicule))
+            _quantitesVehicules[vehicule]++;
+    }
+
+
+    [Serializable]
+    private class VehiculeJson
+    {
+        public string nom;
+        public int taille;
+        public int prix;
     }
 }

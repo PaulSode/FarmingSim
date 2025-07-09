@@ -1,87 +1,163 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Unity.VisualScripting.ReorderableList.Element_Adder_Menu;
+using System.Linq;
 using UnityEngine;
 
 public class Silo : MonoBehaviour
 {
-    public static Silo Instance;
+    public static Silo instance;
+    
+    [SerializeField]
+    private int _maxStockage = 100000;
 
-    public Dictionary<Culture, int> elements;
-    private readonly int maxStockage = 100000;
-
-    [System.Serializable]
-    public class CultureJson
-    {
-        public string nom;
-        public int rendement;
-        public List<Vehicule> vehicules;
-    }
+    public Dictionary<Culture, int> cultures;
+    public Dictionary<Produit, int> produits;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
 
-        Instance = this;
-        Garage.Instance.onLoadComplete += LoadCultures;
+        instance = this;
+        Garage.instance.OnLoadComplete += LoadCultures;
     }
+
+    public event Action OnLoadComplete;
 
     public void LoadCultures()
     {
-    string path = Path.Combine(Application.streamingAssetsPath, "Cultures.json");
+        var path = Path.Combine(Application.streamingAssetsPath, "Cultures.json");
 
-    if (!File.Exists(path))
-    {
-        Debug.LogError("Fichier cultures.json non trouvé :(");
-        return;
-    }
-
-    string json = File.ReadAllText(path);
-
-    CultureJson[] cultures = JsonHelper.FromJson<CultureJson>(json);
-
-        foreach (var v in cultures)
+        if (!File.Exists(path))
         {
-            Culture culture = new Culture();
-            culture.nom = v.nom;
-            culture.rendement = v.rendement;
-            culture.vehicules = v.vehicules;
-            elements.Add(culture, 0);
+            Debug.LogError("Fichier cultures.json non trouvé :(");
+            return;
         }
+
+        var json = File.ReadAllText(path);
+
+        var culturesList = JsonHelper.FromJson<CultureJson>(json);
+
+        foreach (var v in culturesList)
+        {
+            var culture = new Culture
+            {
+                nom = v.nom,
+                rendement = v.rendement,
+                vehicules = v.vehicules
+            };
+            cultures.Add(culture, 0);
+        }
+
+        LoadProduits();
     }
 
 
     public void AddCulture(Culture culture, int quantite)
     {
-        var espaceDisponible = maxStockage - GetTotalQuantite();
-        var quantiteAjoutee = Math.Min(quantite, espaceDisponible);
+        var espaceDisponible = _maxStockage - GetTotalQuantite();
+        var quantiteAjoutee = 0;
+        quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
 
-        if (espaceDisponible < 1) Debug.Log("Au secours c'est plein");
+        if (!cultures.TryAdd(culture, quantiteAjoutee))
+            cultures[culture] += quantiteAjoutee;
+    }
 
-        if (!elements.ContainsKey(culture))
+    public int GetCultureValue(Culture culture)
+    {
+        return cultures[culture];
+    }
+
+    private void LoadProduits()
+    {
+        var path = Path.Combine(Application.streamingAssetsPath, "Produits.json");
+
+        if (!File.Exists(path))
         {
-            elements.Add(culture, quantiteAjoutee);
+            Debug.LogError("Fichier Produits.json non trouvé :(");
+            return;
         }
-        else
+
+        var json = File.ReadAllText(path);
+
+        var produitsList = JsonHelper.FromJson<ProduitJson>(json);
+
+        foreach (var v in produitsList)
         {
-            elements[culture] += quantiteAjoutee;
+            var produit = new Produit
+            {
+                nom = v.nom,
+                prix = v.prix
+            };
+            produits.Add(produit, 0);
+        }
+
+        OnLoadComplete?.Invoke();
+    }
+
+    public void AddProduit(Produit produit, int quantite)
+    {
+        var espaceDisponible = _maxStockage - GetTotalQuantite();
+        var quantiteAjoutee = 0;
+        quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
+
+        if (!produits.TryAdd(produit, quantiteAjoutee))
+            produits[produit] += quantiteAjoutee;
+    }
+    
+    public int GetProduitValue(Produit produit)
+    {
+        return produits[produit];
+    }
+
+    public void SellProduct(Produit produit, int quantite)
+    {
+        produits[produit] -= quantite;
+        Banque.instance.AddMoney(produit.prix * quantite);
+    }
+
+    public void SellAllProducts()
+    {
+        foreach (var kvp in produits.ToList())
+        {
+            var produit = kvp.Key;
+            var quantite = kvp.Value;
+
+            if (quantite <= 0) continue;
+            Banque.instance.AddMoney(produit.prix * quantite);
+            produits[produit] = 0;
         }
     }
 
 
     public int GetTotalQuantite()
     {
-        var quantite = 0;
-        foreach (var element in elements)
-        {
-            quantite += element.Value;
-        }
-        return quantite;
+        return cultures.Sum(element => element.Value) 
+               + produits.Sum(element => element.Value);
     }
 
+    public bool HasSpace()
+    {
+        return GetTotalQuantite() < _maxStockage;
+    }
+
+
+    [Serializable]
+    private class CultureJson
+    {
+        public string nom;
+        public int rendement;
+        public List<Vehicule> vehicules;
+    }
+
+    [Serializable]
+    private class ProduitJson
+    {
+        public string nom;
+        public int prix;
+    }
 }

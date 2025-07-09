@@ -1,21 +1,8 @@
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Champs : MonoBehaviour
 {
-    public int number;
-    public Etat state;
-
-    [SerializeField] private Button stateButton;
-
-    public Culture culture;
-
-    public Lot lot;
-
-    public float cooldown;
-
     public enum Etat
     {
         Recolte,
@@ -24,6 +11,17 @@ public class Champs : MonoBehaviour
         Fertilise,
         Pret
     }
+
+    public int number;
+    public Etat state;
+
+    [SerializeField] private Button stateButton;
+
+    public float cooldown;
+
+    public Culture culture;
+
+    public Lot lot;
 
     private void Start()
     {
@@ -36,15 +34,21 @@ public class Champs : MonoBehaviour
         if (cooldown > 0f)
         {
             cooldown -= Time.deltaTime;
-            if (cooldown <= 0f) state = Etat.Pret;
-        } 
+            if (cooldown <= 0f)
+                state = state switch
+                {
+                    Etat.Seme or Etat.Fertilise => Etat.Pret,
+                    Etat.Recolte => Etat.Laboure,
+                    _ => state
+                };
+        }
     }
 
     public void Labourer()
     {
         if (state == Etat.Recolte)
         {
-            state = Etat.Laboure;
+            cooldown = 10f;
         }
     }
 
@@ -65,16 +69,14 @@ public class Champs : MonoBehaviour
             cooldown /= 2;
         }
     }
-    
+
     public void Recolter()
     {
         if (cooldown < 0)
-        {
-            if (state == Etat.Pret || state == Etat.Fertilise)
+            if (state is Etat.Pret or Etat.Fertilise)
             {
                 state = Etat.Recolte;
-                Silo.Instance.AddCulture(culture, culture.rendement);
-            } 
-        }    
+                Silo.instance.AddCulture(culture, culture.rendement);
+            }
     }
 }

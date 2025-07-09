@@ -2,31 +2,33 @@ using UnityEngine;
 
 public class Banque : MonoBehaviour
 {
-    public static Banque Instance;
+    public static Banque instance;
 
-    public int money;
+    [SerializeField]
+    private int money = 10000;
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance != null)
+        if (instance != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
 
-        Instance = this;
+        instance = this;
     }
 
 
     public void AddMoney(int quantite)
     {
-        if (money + quantite > 0)
-        {
+        if (money + quantite >= 0)
             money += quantite;
-        }
         else
-        {
             Debug.Log("La pauvreté");
-        }
+    }
+
+    public int GetMoney()
+    {
+        return money;
     }
 }

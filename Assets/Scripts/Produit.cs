@@ -1,6 +1,5 @@
-public class Vehicule
+public class Produit
 {
     public string nom;
     public int prix;
-    public int taille;
 }

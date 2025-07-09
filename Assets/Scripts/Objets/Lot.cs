@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Lot
 {
@@ -18,10 +17,7 @@ public class Lot
     public List<int> GetChampsNumbers()
     {
         var liste = new List<int>();
-        foreach (var champs in champsList)
-        {
-            liste.Add(champs.number);
-        }
+        foreach (var champs in champsList) liste.Add(champs.number);
 
         return liste;
     }

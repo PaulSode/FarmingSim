@@ -1,0 +1,13 @@
+[
+  { "nom": "huile", "prix": 50 },
+  { "nom": "planches", "prix": 30 },
+  { "nom": "wagons", "prix": 200 },
+  { "nom": "jouets", "prix": 100 },
+  { "nom": "farine", "prix": 40 },
+  { "nom": "sucre", "prix": 35 },
+  { "nom": "tissu", "prix": 60 },
+  { "nom": "vêtements", "prix": 150 },
+  { "nom": "gâteau", "prix": 180 },
+  { "nom": "chips", "prix": 120 },
+  { "nom": "vin", "prix": 250 }
+]
