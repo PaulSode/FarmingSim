@@ -1,0 +1,92 @@
+[
+  {
+    "nom": "Blé",
+    "rendement": 1000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Orge",
+    "rendement": 1000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Avoine",
+    "rendement": 1000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Canola",
+    "rendement": 1000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Soja",
+    "rendement": 1000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Raisin",
+    "rendement": 1500,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à raisin"]
+  },
+  {
+    "nom": "Olive",
+    "rendement": 1500,
+    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à olive", "Remorque"]
+  },
+  {
+    "nom": "Pomme de terre",
+    "rendement": 5000,
+    "vehicules": ["Tracteur", "Planteuse à pomme de terre", "Moissonneuse à pomme de terre", "Remorque"]
+  },
+  {
+    "nom": "Betterave",
+    "rendement": 3500,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à betterave", "Remorque"]
+  },
+  {
+    "nom": "Coton",
+    "rendement": 750,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à coton", "Remorque semi"]
+  },
+  {
+    "nom": "Maïs",
+    "rendement": 3000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Tournesol",
+    "rendement": 3000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+  },
+  {
+    "nom": "Canne à sucre",
+    "rendement": 5000,
+    "vehicules": ["Tracteur", "Planteuse à canne", "Moissonneuse à canne", "Remorque"]
+  },
+  {
+    "nom": "Peuplier",
+    "rendement": 1500,
+    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à arbre", "Remorque"]
+  },
+  {
+    "nom": "Légumes",
+    "rendement": 2500,
+    "vehicules": ["Tracteur", "Planteuse légumes", "Moissonneuse à légumes", "Remorque"]
+  },
+  {
+    "nom": "Epinard",
+    "rendement": 3000,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à épinard", "Remorque"]
+  },
+  {
+    "nom": "Pois",
+    "rendement": 7500,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à pois", "Remorque"]
+  },
+  {
+    "nom": "Haricots verts",
+    "rendement": 7500,
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à haricots", "Remorque"]
+  }
+]

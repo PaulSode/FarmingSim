@@ -1,0 +1,28 @@
+[
+    { "nom": "Tracteur", "taille": 5, "prix": 1500 },
+    { "nom": "Remorque standard", "taille": 3, "prix": 800 },
+    { "nom": "Moissonneuse-batteuse", "taille": 2, "prix": 2500 },
+    { "nom": "Charrue", "taille": 2, "prix": 600 },
+    { "nom": "Fertilisateur", "taille": 2, "prix": 700 },
+    { "nom": "Semeuse", "taille": 2, "prix": 900 },
+
+    { "nom": "Moissonneuse à raisin", "taille": 1, "prix": 2200 },
+    { "nom": "Moissonneuse à olive", "taille": 1, "prix": 2100 },
+    { "nom": "Moissonneuse à pomme de terre", "taille": 1, "prix": 2300 },
+    { "nom": "Moissonneuse à betterave", "taille": 1, "prix": 2400 },
+    { "nom": "Moissonneuse à coton", "taille": 1, "prix": 2500 },
+    { "nom": "Moissonneuse à canne à sucre", "taille": 1, "prix": 2600 },
+    { "nom": "Moissonneuse à arbre", "taille": 1, "prix": 2000 },
+    { "nom": "Moissonneuse à épinard", "taille": 1, "prix": 1900 },
+    { "nom": "Moissonneuse à haricot vert", "taille": 1, "prix": 1850 },
+    { "nom": "Moissonneuse à pois", "taille": 1, "prix": 1800 },
+    { "nom": "Moissonneuse à légumes", "taille": 1, "prix": 1950 },
+
+    { "nom": "Planteuse à arbre", "taille": 1, "prix": 1400 },
+    { "nom": "Planteuse à pomme de terre", "taille": 1, "prix": 1350 },
+    { "nom": "Planteuse à canne à sucre", "taille": 1, "prix": 1300 },
+    { "nom": "Planteuse à légumes", "taille": 1, "prix": 1250 },
+
+    { "nom": "Remorque semi", "taille": 1, "prix": 1600 }
+  ]
+
