@@ -5,8 +5,11 @@ public class Ferme : MonoBehaviour
 {
     public static Ferme instance;
 
+
     [SerializeField] private GameObject prefabChamp;
     private List<GameObject> _champs = new();
+    private int _champsNumber = 1;
+
 
     private void Awake()
     {
@@ -37,6 +40,10 @@ public class Ferme : MonoBehaviour
         var champ = Instantiate(prefabChamp);
         _champs.Add(champ);
 
-        champ.GetComponent<Champs>().culture = culture;
+        var go = champ.GetComponent<Champs>();
+        go.culture = culture;
+        go.number = _champsNumber;      
+        _champsNumber++;
+
     }
 }

@@ -98,7 +98,7 @@ public class Silo : MonoBehaviour
         var json = File.ReadAllText(path);
 
         var produitsList = JsonHelper.FromJson<ProduitJson>(json);
-
+        
         foreach (var v in produitsList)
         {
             var produit = new Produit

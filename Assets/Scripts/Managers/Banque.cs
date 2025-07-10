@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Banque : MonoBehaviour
@@ -18,11 +19,20 @@ public class Banque : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        MoneyUI.instance.UpdateMoney(money);
+    }
+
 
     public void AddMoney(int quantite)
     {
         if (money + quantite >= 0)
+        {
             money += quantite;
+            MoneyUI.instance.UpdateMoney(money);
+        }
+            
         else
             Debug.Log("La pauvreté");
     }
