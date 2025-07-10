@@ -68,8 +68,10 @@ public class Garage : MonoBehaviour
 
     public bool PeutCultiver(Culture culture)
     {
-        return culture.vehicules.All(vehicule => vehiculeList.ContainsKey(vehicule) && vehiculeList[vehicule] > 0);
-    }
+        foreach (var vehicule in culture.vehicules)
+            if (!vehiculeList.ContainsKey(vehicule) || vehiculeList[vehicule] <= 0)
+                return false;
+        return true;    }
 
 
     public bool UtiliserVehicules(Culture culture)

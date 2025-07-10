@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CultureAdderUI : MonoBehaviour
@@ -36,8 +33,7 @@ public class CultureAdderUI : MonoBehaviour
 
             if (kvp.Key.vehicules is { Count: > 0 })
             {
-                var vehiculeText = kvp.Key.vehicules.Aggregate("", (current, v) => current + $"{v.nom}\n");
-                al.text3.text = vehiculeText;
+                al.text3.text = kvp.Key.vehicules.Aggregate("", (current, v) => current + $"{v.nom}\n");
             }
         }
         ToggleVisibility();

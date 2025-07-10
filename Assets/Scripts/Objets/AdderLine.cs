@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +8,10 @@ public class AdderLine : MonoBehaviour
     public TMP_Text text2;
     public TMP_Text text3;
     public TMP_Text text4;
+    public TMP_Text text5;
     
     public Culture culture;
-    public Usine usine;
+    public Usineur.UsineJson usine;
     
     [SerializeField] private Button addButton;
 
@@ -39,6 +39,12 @@ public class AdderLine : MonoBehaviour
 
     private void UpdateButton()
     {
-        addButton.interactable = Garage.instance.PeutCultiver(culture);
+        if (culture != null)
+        {
+            addButton.interactable = Garage.instance.PeutCultiver(culture);
+        } else if (usine != null)
+        {
+            addButton.interactable = Banque.instance.GetMoney() >= usine.prix;
+        }
     }
 }

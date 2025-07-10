@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 9186199148952798318}
   - component: {fileID: 732147107862880605}
   m_Layer: 5
-  m_Name: Culture
+  m_Name: CultureAdder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

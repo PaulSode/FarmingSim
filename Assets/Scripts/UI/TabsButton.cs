@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TabsButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public TabsGroup tabGroup;    
-
+    public TabsGroup tabGroup; 
+    public GameObject linkedPage;
     public Image background;
 
 

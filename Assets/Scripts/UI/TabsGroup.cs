@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TabsGroup : MonoBehaviour
 {
     private List<TabsButton> tabsButtons = new();
+    
+    [SerializeField]
     private TabsButton selectedButton;
     
-    public List<GameObject> pages = new();
-
     public void Subscribe(TabsButton button)
     {
         tabsButtons.Add(button);
@@ -32,22 +30,17 @@ public class TabsGroup : MonoBehaviour
     }
 
     public void OnTabSelected(TabsButton button)
-    { 
+    {
         selectedButton = button;
-        ResetTabs();  
-        button.background.color = Color.skyBlue;
-        
-        int index = button.transform.GetSiblingIndex();
-        for (int i = 0; i < pages.Count; i++)
+        ResetTabs();
+        button.background.color = Color.cyan;
+
+        foreach (var b in tabsButtons.Where(b => b != null && b.linkedPage != null))
         {
-            if (i == index)
-            {
-                pages[i].SetActive(true);
-            }
+            if (b == button)
+                b.linkedPage.transform.SetAsLastSibling();
             else
-            {
-                pages[i].SetActive(false);
-            }
+                b.linkedPage.transform.SetSiblingIndex(0);
         }
     }
 
