@@ -7,6 +7,7 @@ public class Ferme : MonoBehaviour
 
 
     [SerializeField] private GameObject prefabChamp;
+    [SerializeField] private Transform contentPanel;
     private List<GameObject> _champs = new();
     private int _champsNumber = 1;
 
@@ -37,7 +38,7 @@ public class Ferme : MonoBehaviour
             return;
         }
 
-        var champ = Instantiate(prefabChamp);
+        var champ = Instantiate(prefabChamp, contentPanel);
         _champs.Add(champ);
 
         var go = champ.GetComponent<Champs>();

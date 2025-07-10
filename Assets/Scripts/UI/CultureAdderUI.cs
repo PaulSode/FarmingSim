@@ -30,11 +30,15 @@ public class CultureAdderUI : MonoBehaviour
             var go = Instantiate(culturePrefab, contentPanel);
             go.name = kvp.Key.nom;
             var al = go.GetComponent<AdderLine>();
+            al.culture = kvp.Key;
             al.text1.text = kvp.Key.nom;
             al.text2.text = $"{kvp.Key.rendement}/hectare";
 
-            var vehiculeText = kvp.Key.vehicules.Aggregate("", (current, v) => current + $"{v.nom}\n");
-            al.text3.text = vehiculeText;
+            if (kvp.Key.vehicules is { Count: > 0 })
+            {
+                var vehiculeText = kvp.Key.vehicules.Aggregate("", (current, v) => current + $"{v.nom}\n");
+                al.text3.text = vehiculeText;
+            }
         }
         ToggleVisibility();
     }

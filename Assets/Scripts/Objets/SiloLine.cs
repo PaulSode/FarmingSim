@@ -7,14 +7,11 @@ public class SiloLine : MonoBehaviour
     
     public void SellItem()
     {
-        Silo.instance.AddCulture(culture, -9999999);
-        SiloUI.instance.UpdateLine(culture.nom, 0);
+        Silo.instance.AddProduit(produit, -9999999);
     }
     
     public void TrashItem()
     {
-        Silo.instance.AddProduit(produit, -9999999);
-        SiloUI.instance.UpdateLine(produit.nom, 0);
-        ;
+        Silo.instance.AddCulture(culture, -9999999);
     }
 }

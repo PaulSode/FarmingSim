@@ -2,27 +2,27 @@
   {
     "nom": "Blé",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Orge",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Avoine",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Canola",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Soja",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Raisin",
@@ -52,12 +52,12 @@
   {
     "nom": "Maïs",
     "rendement": 3000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Tournesol",
     "rendement": 3000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
   },
   {
     "nom": "Canne à sucre",
@@ -72,7 +72,7 @@
   {
     "nom": "Légumes",
     "rendement": 2500,
-    "vehicules": ["Tracteur", "Planteuse légumes", "Moissonneuse à légumes", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à légumes", "Moissonneuse à légumes", "Remorque"]
   },
   {
     "nom": "Epinard",

@@ -368,6 +368,7 @@ MonoBehaviour:
   text2: {fileID: 4218994146990448819}
   text3: {fileID: 6500640671633524477}
   text4: {fileID: 0}
+  usine: {fileID: 0}
   addButton: {fileID: 5495427264940645543}
 --- !u!1 &5267376870972942237
 GameObject:
@@ -632,7 +633,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1995409782090564903}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 732147107862880605}
+        m_TargetAssemblyTypeName: AdderLine, Assembly-CSharp
+        m_MethodName: ChooseCulture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6297151056610065603
 GameObject:
   m_ObjectHideFlags: 0

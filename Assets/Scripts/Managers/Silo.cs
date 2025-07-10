@@ -57,11 +57,24 @@ public class Silo : MonoBehaviour
 
         foreach (var v in culturesList)
         {
+            var vehicules = new List<Vehicule>();
+
+            foreach (var nom in v.vehicules)
+            {
+                var match = Garage.instance.vehiculeList.Keys.FirstOrDefault(vh => vh.nom == nom);
+
+                if (match != null)
+                    vehicules.Add(match);
+                else
+                    Debug.LogWarning($"Véhicule '{nom}' introuvable pour la culture '{v.nom}'");
+            }
+
+
             var culture = new Culture
             {
                 nom = v.nom,
                 rendement = v.rendement,
-                vehicules = v.vehicules
+                vehicules = vehicules
             };
             cultures.Add(culture, 0);
         }
@@ -77,7 +90,10 @@ public class Silo : MonoBehaviour
         quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
 
         if (!cultures.TryAdd(culture, quantiteAjoutee))
+        {
             cultures[culture] += quantiteAjoutee;
+            SiloUI.instance.UpdateLine(culture.nom, cultures[culture]);
+        }
     }
 
     public int GetCultureValue(Culture culture)
@@ -122,11 +138,16 @@ public class Silo : MonoBehaviour
             quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
 
             if (!produits.TryAdd(produit, quantiteAjoutee))
+            {
                 produits[produit] += quantiteAjoutee;
+                SiloUI.instance.UpdateLine(produit.nom, produits[produit]);
+            }
         }
         else
         {
             SellProduct(produit, quantite);
+            SiloUI.instance.UpdateLine(produit.nom, produits[produit]);
+
         }
     }
     
@@ -181,7 +202,7 @@ public class Silo : MonoBehaviour
     {
         public string nom;
         public int rendement;
-        public List<Vehicule> vehicules;
+        public List<string> vehicules;
     }
 
     [Serializable]

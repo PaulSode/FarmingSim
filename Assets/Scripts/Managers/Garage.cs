@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 public class Garage : MonoBehaviour
@@ -8,10 +9,8 @@ public class Garage : MonoBehaviour
     public static Garage instance;
     public bool isLoaded =  false;
 
-    private Dictionary<Vehicule, int> _quantitesVehicules = new();
-
-    public List<Vehicule> vehiculeList = new ();
-
+    public Dictionary<Vehicule, int> vehiculeList = new();
+    
     private void Awake()
     {
         if (instance != null)
@@ -48,7 +47,7 @@ public class Garage : MonoBehaviour
                 taille = v.taille,
                 prix = v.prix
             };
-            vehiculeList.Add(vehicule);
+            vehiculeList.Add(vehicule, 999);
         }
 
         isLoaded = true;
@@ -61,18 +60,15 @@ public class Garage : MonoBehaviour
         {
             Banque.instance.AddMoney(-vehicule.prix);
 
-            if (!_quantitesVehicules.ContainsKey(vehicule)) _quantitesVehicules[vehicule] = 0;
+            if (!vehiculeList.ContainsKey(vehicule)) vehiculeList[vehicule] = 0;
 
-            _quantitesVehicules[vehicule]++;
+            vehiculeList[vehicule]++;
         }
     }
 
     public bool PeutCultiver(Culture culture)
     {
-        foreach (var vehicule in culture.vehicules)
-            if (!_quantitesVehicules.ContainsKey(vehicule) || _quantitesVehicules[vehicule] <= 0)
-                return false;
-        return true;
+        return culture.vehicules.All(vehicule => vehiculeList.ContainsKey(vehicule) && vehiculeList[vehicule] > 0);
     }
 
 
@@ -80,7 +76,7 @@ public class Garage : MonoBehaviour
     {
         if (!PeutCultiver(culture)) return false;
 
-        foreach (var vehicule in culture.vehicules) _quantitesVehicules[vehicule]--;
+        foreach (var vehicule in culture.vehicules) vehiculeList[vehicule]--;
 
         return true;
     }
@@ -88,8 +84,8 @@ public class Garage : MonoBehaviour
 
     public void RendreVehicule(Vehicule vehicule)
     {
-        if (_quantitesVehicules.ContainsKey(vehicule))
-            _quantitesVehicules[vehicule]++;
+        if (vehiculeList.ContainsKey(vehicule))
+            vehiculeList[vehicule]++;
     }
 
 

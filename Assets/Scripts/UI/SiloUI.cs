@@ -65,6 +65,8 @@ public class SiloUI : MonoBehaviour
             go.GetComponent<SiloLine>().culture = kvp.Key;
             var text = go.GetComponentInChildren<TMP_Text>();
             text.text = $"{kvp.Key.nom}\nQuantité : {kvp.Value}";
+            
+            _lines.Add(go);
         }
 
         foreach (KeyValuePair<Produit, int> kvp in Silo.instance.produits)
@@ -74,6 +76,8 @@ public class SiloUI : MonoBehaviour
             go.GetComponent<SiloLine>().produit = kvp.Key;
             var text = go.GetComponentInChildren<TMP_Text>();
             text.text = $"{kvp.Key.nom}\nQuantité : {kvp.Value}";
+            
+            _lines.Add(go);
         }
         
         scrollrect.verticalNormalizedPosition = 1;
@@ -84,7 +88,7 @@ public class SiloUI : MonoBehaviour
         foreach (var line in _lines)
         {
             if (line.name != element) continue;
-            var text = line.GetComponent<TMP_Text>();
+            var text = line.GetComponentInChildren<TMP_Text>();
             text.text = $"{line.name}\nQuantité : {value}";
         }
     }
@@ -93,7 +97,7 @@ public class SiloUI : MonoBehaviour
     {
         foreach (var line in _lines)
         {
-            var text = line.GetComponent<TMP_Text>();
+            var text = line.GetComponentInChildren<TMP_Text>();
             text.text = $"{line.name}\nQuantité : 0";
         }
     }
