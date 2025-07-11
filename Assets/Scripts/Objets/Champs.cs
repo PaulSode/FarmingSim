@@ -24,6 +24,7 @@ public class Champs : MonoBehaviour
 
     private float _startCooldown;
     public float cooldown;
+    private int _rendementTemporaire;
 
     public Culture culture;
 
@@ -37,7 +38,7 @@ public class Champs : MonoBehaviour
         nameText.text = $"Ferme #{number}";
         cultureText.text = culture.nom;
         progressBar.fillAmount = 0f;
-
+        _rendementTemporaire = culture.rendement;
     }
 
     private void Update()
@@ -65,6 +66,8 @@ public class Champs : MonoBehaviour
                     break;
                 case Etat.Pret:
                     LibererVehiculesEtape("Recolter");
+                    Silo.instance.AddCulture(culture, _rendementTemporaire);
+                    _rendementTemporaire = culture.rendement;
                     state = Etat.Recolte;
                     break;
             }
@@ -119,7 +122,9 @@ public class Champs : MonoBehaviour
                 return;
             }
             state = Etat.Fertilise;
-            cooldown /= 2;
+            cooldown += 20f;
+            _startCooldown += 20f;
+            _rendementTemporaire = culture.rendement * 2;
             UpdateProgressButton(state);
 
         }
@@ -137,7 +142,6 @@ public class Champs : MonoBehaviour
                 }
                 cooldown = 10f;
                 _startCooldown = 10f;
-                Silo.instance.AddCulture(culture, culture.rendement);
                 UpdateProgressButton(state);
             }
     }
@@ -191,6 +195,10 @@ public class Champs : MonoBehaviour
     
     public bool ReserverVehiculesEtape(string etape)
     {
+        Debug.Log(culture.vehicules[3].nom);
+        Debug.Log(culture.GetVehiculesPourEtape(etape)[0].nom + ' ' +
+                  culture.GetVehiculesPourEtape(etape)[0].quantiteDispo);
+        
         var liste = culture.GetVehiculesPourEtape(etape);
 
         foreach (var v in liste)
