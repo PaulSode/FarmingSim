@@ -9,5 +9,6 @@
   { "nom": "Vêtements", "prix": 1 },
   { "nom": "Gâteau", "prix": 1 },
   { "nom": "Chips", "prix": 1 },
-  { "nom": "Vin", "prix": 1 }
+  { "nom": "Vin", "prix": 1 },
+  { "nom": "Viande", "prix": 1 }
 ]
