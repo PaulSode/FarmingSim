@@ -1,10 +1,10 @@
 [
-    { "nom": "Tracteur", "taille": 5, "prix": 1500 },
+    { "nom": "Tracteur", "taille": 5, "prix": 1000 },
     { "nom": "Remorque", "taille": 3, "prix": 800 },
-    { "nom": "Moissonneuse-batteuse", "taille": 2, "prix": 2500 },
-    { "nom": "Charrue", "taille": 2, "prix": 600 },
-    { "nom": "Fertilisateur", "taille": 2, "prix": 700 },
+    { "nom": "Moissonneuse-batteuse", "taille": 2, "prix": 2000 },
     { "nom": "Semeuse", "taille": 2, "prix": 900 },
+    { "nom": "Fertilisateur", "taille": 2, "prix": 700 },
+    { "nom": "Charrue", "taille": 2, "prix": 600 },
 
     { "nom": "Moissonneuse à raisin", "taille": 1, "prix": 2200 },
     { "nom": "Moissonneuse à olive", "taille": 1, "prix": 2100 },

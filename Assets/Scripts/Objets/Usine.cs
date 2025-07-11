@@ -45,6 +45,8 @@ public class Usine : MonoBehaviour
 
     private void Update()
     {
+        if (!Silo.instance.HasSpace()) status = Travail.Pause;
+        
         if (_cooldown > 0 && status == Travail.Production)
         {
             _cooldown -= Time.deltaTime;

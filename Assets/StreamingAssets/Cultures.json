@@ -2,91 +2,91 @@
   {
     "nom": "Blé",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Orge",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Avoine",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Canola",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Soja",
     "rendement": 1000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Raisin",
     "rendement": 1500,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à raisin", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à raisin", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Olive",
     "rendement": 1500,
-    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à olive", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à olive", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Pomme de terre",
     "rendement": 5000,
-    "vehicules": ["Tracteur", "Planteuse à pomme de terre", "Moissonneuse à pomme de terre", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à pomme de terre", "Moissonneuse à pomme de terre", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Betterave",
     "rendement": 3500,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à betterave", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à betterave", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Coton",
     "rendement": 750,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à coton", "Remorque semi"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à coton", "Remorque semi", "Fertilisateur"]
   },
   {
     "nom": "Maïs",
     "rendement": 3000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Tournesol",
     "rendement": 3000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse-batteuse", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Canne à sucre",
     "rendement": 5000,
-    "vehicules": ["Tracteur", "Planteuse à canne", "Moissonneuse à canne", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à canne", "Moissonneuse à canne", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Peuplier",
     "rendement": 1500,
-    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à arbre", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à arbre", "Moissonneuse à arbre", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Légumes",
     "rendement": 2500,
-    "vehicules": ["Tracteur", "Planteuse à légumes", "Moissonneuse à légumes", "Remorque"]
+    "vehicules": ["Tracteur", "Planteuse à légumes", "Moissonneuse à légumes", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Epinard",
     "rendement": 3000,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à épinard", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à épinard", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Pois",
     "rendement": 7500,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à pois", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à pois", "Remorque", "Fertilisateur"]
   },
   {
     "nom": "Haricots verts",
     "rendement": 7500,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à haricots", "Remorque"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à haricots", "Remorque", "Fertilisateur"]
   }
 ]

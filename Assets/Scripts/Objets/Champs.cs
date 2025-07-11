@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,11 +46,14 @@ public class Champs : MonoBehaviour
 
     private void Update()
     {
-        if (cooldown <= 0f) return;
+        if (cooldown <= 0 || (state == Etat.Seme && cooldown > 0)) progressButton.interactable = LookForAvailability();
+
+        if (cooldown <= 0f || !Silo.instance.HasSpace()) return;
         
         cooldown -= Time.deltaTime;
         if (cooldown <= 0f)
         {
+            cooldown = 0f;
             switch (state)
             {
                 case Etat.Laboure:
@@ -132,7 +138,7 @@ public class Champs : MonoBehaviour
 
     public void Recolter()
     {
-        if (cooldown < 0)
+        if (cooldown <= 0)
             if (state is Etat.Pret)
             {
                 if (!ReserverVehiculesEtape("Recolter"))
@@ -184,6 +190,7 @@ public class Champs : MonoBehaviour
             case Etat.Pret:
                 buttonText.text = "Récolter";
                 progressButton.onClick.AddListener(Recolter);
+                progressButton.interactable = false;
                 break;
 
             default:
@@ -222,6 +229,30 @@ public class Champs : MonoBehaviour
             v.quantiteDispo++;
             v.adderLine.text4.text = $"{v.quantiteDispo} disponible.s";
         }
+    }
+
+    private bool LookForAvailability()
+    {
+        var liste = new List<Vehicule>();
+        switch (state)
+        {
+            case Etat.Recolte:
+                liste = culture.GetVehiculesPourEtape("Labourer");
+                break;
+            case Etat.LaboureFin:
+                liste = culture.GetVehiculesPourEtape("Semer");
+                break;
+            case Etat.Seme:
+                liste = culture.GetVehiculesPourEtape("Fertiliser");
+                break;
+            case Etat.Pret:
+                liste = culture.GetVehiculesPourEtape("Recolter");
+                break;
+
+            default:
+                break;
+        }
+        return liste.All(v => v.quantiteDispo >= 1);
     }
 
 
