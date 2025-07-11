@@ -46,12 +46,12 @@ public class AdderLine : MonoBehaviour
 
     private void UpdateButton()
     {
-        if (culture != null)
-        {
-            addButton.interactable = Garage.instance.PeutCultiver(culture);
-        } else if (usine != null)
+        if (usine != null)
         {
             addButton.interactable = Banque.instance.GetMoney() >= usine.prix;
+        } else if (vehicule != null)
+        {
+            addButton.interactable = Banque.instance.GetMoney() >= vehicule.prix;
         }
     }
 }
