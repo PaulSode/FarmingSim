@@ -11,7 +11,7 @@ public class Garage : MonoBehaviour
     [SerializeField] private Transform contentPanel;
     [SerializeField] private GameObject vehiculePrefab;
 
-    public Dictionary<Vehicule, int> vehiculeList = new();
+    public List<Vehicule> vehiculeList = new();
     
     private void Awake()
     {
@@ -47,9 +47,11 @@ public class Garage : MonoBehaviour
             {
                 nom = v.nom,
                 taille = v.taille,
-                prix = v.prix
+                prix = v.prix,
+                quantiteAchete = 0,
+                quantiteDispo = 0,
             };
-            vehiculeList.Add(vehicule, 999);
+            vehiculeList.Add(vehicule);
         }
 
         isLoaded = true;
@@ -60,19 +62,19 @@ public class Garage : MonoBehaviour
     private void InitAdderDisplay()
     {
 
-        foreach (KeyValuePair<Vehicule, int> kvp in vehiculeList)
+        foreach (Vehicule kvp in vehiculeList)
         {
             var go = Instantiate(vehiculePrefab, contentPanel);
-            go.name = kvp.Key.nom;
+            go.name = kvp.nom;
             var al = go.GetComponent<AdderLine>();
-            al.vehicule = kvp.Key;
-            al.usine = null; //ça devrait l'être de base mais je sais pas pourquoi ça l'est pas
-            al.text1.text = kvp.Key.nom;
-            al.text2.text = kvp.Key.prix + " pièces";
+            al.vehicule = kvp;
+            al.usine = null; //ça devrait l'être de base mais je sais pas pourquoi ça l'est pas 
+            al.text1.text = kvp.nom;
+            al.text2.text = kvp.prix + " pièces";
             al.text3.text = "0 acheté.s";
             al.text4.text = "0 disponible.s";
 
-            kvp.Key.adderLine = al;
+            kvp.adderLine = al;
 
         }
     }
@@ -83,9 +85,6 @@ public class Garage : MonoBehaviour
         {
             Banque.instance.AddMoney(-vehicule.prix);
 
-            if (!vehiculeList.ContainsKey(vehicule)) vehiculeList[vehicule] = 0;
-
-            vehiculeList[vehicule]++;
             vehicule.adderLine.text3.text = $"{++vehicule.quantiteAchete} acheté.s";
             vehicule.adderLine.text4.text = $"{++vehicule.quantiteDispo} disponible.s";
         }
@@ -94,25 +93,25 @@ public class Garage : MonoBehaviour
     public bool PeutCultiver(Culture culture)
     {
         foreach (var vehicule in culture.vehicules)
-            if (!vehiculeList.ContainsKey(vehicule) || vehiculeList[vehicule] <= 0)
+            if (vehicule.quantiteDispo <= 0)
                 return false;
-        return true;    }
-
-
-    public bool UtiliserVehicules(Culture culture)
-    {
-        if (!PeutCultiver(culture)) return false;
-
-        foreach (var vehicule in culture.vehicules) vehiculeList[vehicule]--;
-
-        return true;
+        return true;    
     }
 
 
-    public void RendreVehicule(Vehicule vehicule)
+    public void UtiliserVehicules(Culture culture)
     {
-        if (vehiculeList.ContainsKey(vehicule))
-            vehiculeList[vehicule]++;
+        if (PeutCultiver(culture))
+        {
+            foreach (var vehicule in culture.vehicules) vehicule.adderLine.text4.text = $"{--vehicule.quantiteDispo} disponible.s";
+
+        }
+    }
+
+
+    public void RendreVehicules(Culture culture)
+    {
+        foreach (var vehicule in culture.vehicules) vehicule.adderLine.text4.text = $"{++vehicule.quantiteDispo} disponible.s";
     }
 
 

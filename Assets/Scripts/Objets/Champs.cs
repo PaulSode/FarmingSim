@@ -47,12 +47,27 @@ public class Champs : MonoBehaviour
         cooldown -= Time.deltaTime;
         if (cooldown <= 0f)
         {
-            state = state switch
+            switch (state)
             {
-                Etat.Seme or Etat.Fertilise => Etat.Pret,
-                Etat.Laboure => Etat.LaboureFin,
-                _ => state
-            };
+                case Etat.Laboure:
+                    LibererVehiculesEtape("Labourer");
+                    state = Etat.LaboureFin;
+                    break;
+
+                case Etat.Seme:
+                    LibererVehiculesEtape("Semer");
+                    state = Etat.Pret;
+                    break;
+
+                case Etat.Fertilise:
+                    LibererVehiculesEtape("Fertiliser");
+                    state = Etat.Pret;
+                    break;
+                case Etat.Pret:
+                    LibererVehiculesEtape("Recolter");
+                    state = Etat.Recolte;
+                    break;
+            }
             UpdateProgressButton(state);
         }
         progressBar.fillAmount = cooldown / _startCooldown;
@@ -60,8 +75,14 @@ public class Champs : MonoBehaviour
 
     public void Labourer()
     {
-        if (state is Etat.Recolte)
+        if (state == Etat.Recolte)
         {
+            if (!ReserverVehiculesEtape("Labourer"))
+            {
+                Debug.Log("Pas de véhicule pour labourer !");
+                return;
+            }
+
             state = Etat.Laboure;
             cooldown = 10f;
             _startCooldown = 10f;
@@ -69,10 +90,16 @@ public class Champs : MonoBehaviour
         }
     }
 
+
     public void Semer()
     {
         if (state is Etat.LaboureFin)
         {
+            if (!ReserverVehiculesEtape("Semer"))
+            {
+                Debug.Log("Pas de véhicule pour labourer !");
+                return;
+            }
             state = Etat.Seme;
             cooldown = 60f;
             _startCooldown = 60f;
@@ -86,6 +113,11 @@ public class Champs : MonoBehaviour
     {
         if (state is Etat.Seme)
         {
+            if (!ReserverVehiculesEtape("Fertiliser"))
+            {
+                Debug.Log("Pas de véhicule pour labourer !");
+                return;
+            }
             state = Etat.Fertilise;
             cooldown /= 2;
             UpdateProgressButton(state);
@@ -98,7 +130,13 @@ public class Champs : MonoBehaviour
         if (cooldown < 0)
             if (state is Etat.Pret)
             {
-                state = Etat.Recolte;
+                if (!ReserverVehiculesEtape("Recolter"))
+                {
+                    Debug.Log("Pas de véhicule pour labourer !");
+                    return;
+                }
+                cooldown = 10f;
+                _startCooldown = 10f;
                 Silo.instance.AddCulture(culture, culture.rendement);
                 UpdateProgressButton(state);
             }
@@ -150,5 +188,33 @@ public class Champs : MonoBehaviour
                 break;
         }
     }
+    
+    public bool ReserverVehiculesEtape(string etape)
+    {
+        var liste = culture.GetVehiculesPourEtape(etape);
+
+        foreach (var v in liste)
+            if (v.quantiteDispo <= 0) return false;
+
+        foreach (var v in liste)
+        {
+            v.quantiteDispo--;
+            v.adderLine.text4.text = $"{v.quantiteDispo} disponible.s";
+        }
+
+        return true;
+    }
+
+    public void LibererVehiculesEtape(string etape)
+    {
+        var liste = culture.GetVehiculesPourEtape(etape);
+
+        foreach (var v in liste)
+        {
+            v.quantiteDispo++;
+            v.adderLine.text4.text = $"{v.quantiteDispo} disponible.s";
+        }
+    }
+
 
 }

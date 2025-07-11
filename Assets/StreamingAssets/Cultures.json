@@ -27,7 +27,7 @@
   {
     "nom": "Raisin",
     "rendement": 1500,
-    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à raisin"]
+    "vehicules": ["Tracteur", "Semeuse", "Moissonneuse à raisin", "Remorque"]
   },
   {
     "nom": "Olive",

@@ -26,12 +26,6 @@ public class Ferme : MonoBehaviour
 
     public void CreerChamps(Culture culture)
     {
-        if (!Garage.instance.UtiliserVehicules(culture))
-        {
-            Debug.Log("Pas assez de véhicules pour cette culture.");
-            return;
-        }
-
         if (prefabChamp == null)
         {
             Debug.LogError("PrefabChamp n’est pas assigné !");

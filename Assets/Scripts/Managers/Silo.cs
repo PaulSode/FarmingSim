@@ -61,7 +61,7 @@ public class Silo : MonoBehaviour
 
             foreach (var nom in v.vehicules)
             {
-                var match = Garage.instance.vehiculeList.Keys.FirstOrDefault(vh => vh.nom == nom);
+                var match = Garage.instance.vehiculeList.FirstOrDefault(vh => vh.nom == nom);
 
                 if (match != null)
                     vehicules.Add(match);
