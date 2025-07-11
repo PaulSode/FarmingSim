@@ -1,0 +1,293 @@
+﻿// Code du diagramme 
+// Mermaid : https://www.mermaidchart.com
+
+
+classDiagram
+direction TB
+    class Animal {
+	    +int eau
+	    +int taille
+	    +Die() void
+    }
+
+    class Culture {
+	    +string nom
+	    +int rendement
+	    +List~Vehicule~ vehicules
+	    +GetVehiculesPourEtape(string etape) List~Vehicule~
+    }
+
+    class Produit {
+	    +string nom
+	    +int prix
+    }
+
+    class Vehicule {
+	    +string nom
+	    +int prix
+	    +int taille
+	    +int quantiteDispo
+	    +int quantiteAchete
+	    +AdderLine adderLine
+    }
+
+    class Banque {
+	    +static Banque instance
+	    -int money
+	    +AddMoney(int quantite) void
+	    +GetMoney() int
+	    +Awake() void
+	    +Start() void
+    }
+
+    class Silo {
+	    +static Silo instance
+	    +bool isLoaded
+	    +bool autoSell
+	    -int _maxStockage
+	    +Dictionary~Culture, int~ cultures
+	    +Dictionary~Produit, int~ produits
+	    +OnLoadComplete Action
+	    +LoadCultures() void
+	    +AddCulture(Culture culture, int quantite) void
+	    +AddProduit(Produit produit, int quantite) void
+	    +GetCultureValue(Culture culture) int
+	    +GetProduitValue(Produit produit) int
+	    +SellProduct(Produit produit, int quantite) void
+	    +SellAllProducts() void
+	    +GetTotalQuantite() int
+	    +HasSpace() bool
+	    +ToggleAutoSell() void
+    }
+
+    class Garage {
+	    +static Garage instance
+	    +bool isLoaded
+	    +List~Vehicule~ vehiculeList
+	    +OnLoadComplete Action
+	    +ChargerVehicules() void
+	    +AcheterVehicule(Vehicule vehicule) void
+	    +PeutCultiver(Culture culture) bool
+	    +UtiliserVehicules(Culture culture) void
+	    +RendreVehicules(Culture culture) void
+    }
+
+    class Ferme {
+	    +static Ferme instance
+	    +CreerChamps(Culture culture) void
+    }
+
+    class Usineur {
+	    +static Usineur instance
+	    +bool isLoaded
+	    +List~UsineJson~ usinesJson
+	    +List~Usine~ usinesList
+	    +OnLoadComplete Action
+	    +LoadUsines() void
+	    +CreerUsine(string produit) void
+    }
+
+    class Champs {
+	    ~~ Etat
+	    +int number
+	    +Etat state
+	    +Culture culture
+	    +Lot lot
+	    +float cooldown
+	    +Labourer() void
+	    +Semer() void
+	    +Fertiliser() void
+	    +Recolter() void
+	    +ReserverVehiculesEtape(string etape) bool
+	    +LibererVehiculesEtape(string etape) void
+    }
+
+    class Usine {
+	    ~~ Travail
+	    +int number
+	    +string nom
+	    +int multiplicateur
+	    +Travail status
+	    +bool hasManager
+	    +List~Intrant~ entrants
+	    +Produit produit
+	    +CommencerProduire() void
+	    +FinirProduire() void
+	    +PeutProduire() bool
+    }
+
+    class Lot {
+	    +List~Champs~ champsList
+	    +AddChamps(Champs champs) void
+	    +RemoveChamps(Champs champs) void
+	    +GetChampsNumbers() List~int~
+    }
+
+    class AdderLine {
+	    +TMP_Text text1
+	    +TMP_Text text2
+	    +TMP_Text text3
+	    +TMP_Text text4
+	    +TMP_Text text5
+	    +Culture culture
+	    +UsineJson usine
+	    +Vehicule vehicule
+	    +Choose() void
+	    +UpdateButton() void
+    }
+
+    class SiloUI {
+	    +static SiloUI instance
+	    +UpdateLine(string element, int value) void
+	    +ResetAllLines() void
+	    +InitSiloDisplay() void
+    }
+
+    class MoneyUI {
+	    +static MoneyUI instance
+	    +UpdateMoney(int value) void
+    }
+
+    class SiloLine {
+	    +Culture culture
+	    +Produit produit
+	    +SellItem() void
+	    +TrashItem() void
+    }
+
+    class TabsButton {
+	    +TabsGroup tabGroup
+	    +GameObject linkedPage
+	    +Image background
+	    +OnPointerEnter() void
+	    +OnPointerExit() void
+	    +OnPointerClick() void
+    }
+
+    class TabsGroup {
+	    +List~TabsButton~ tabsButtons
+	    +Subscribe(TabsButton button) void
+	    +OnTabEnter(TabsButton button) void
+	    +OnTabExit(TabsButton button) void
+	    +OnTabSelected(TabsButton button) void
+    }
+
+    class CultureAdderUI {
+	    +InitAdderDisplay() void
+	    +ToggleVisibility() void
+    }
+
+    class UsineAdderUI {
+	    +InitAdderDisplay() void
+	    +ToggleVisibility() void
+    }
+
+    class JsonHelper {
+	    +FromJson~T~(string json) T[]
+    }
+
+    class Intrant {
+	    +TypeIntrant type
+	    +Culture culture
+	    +Produit produit
+	    +string Nom
+    }
+
+    class TypeIntrant {
+	    Culture
+	    Produit
+    }
+
+    class UsineJson {
+	    +string nom
+	    +int multiplicateur
+	    +List~IntrantJson~ intrants
+	    +string produit
+	    +int prix
+    }
+
+    class IntrantJson {
+	    +string nom
+	    +string type
+    }
+
+    class VehiculeJson {
+	    +string nom
+	    +int taille
+	    +int prix
+    }
+
+    class CultureJson {
+	    +string nom
+	    +int rendement
+	    +List~string~ vehicules
+    }
+
+    class ProduitJson {
+	    +string nom
+	    +int prix
+    }
+
+    class EtatChamps {
+	    Recolte
+	    Laboure
+	    LaboureFin
+	    Seme
+	    Fertilise
+	    Pret
+    }
+
+    class TravailUsine {
+	    Production
+	    Attente
+	    Pause
+    }
+
+    class UntitledClass {
+    }
+
+    class UntitledClass2 {
+    }
+
+	<<Singleton>> Banque
+	<<Singleton>> Silo
+	<<Singleton>> Garage
+	<<Singleton>> Ferme
+	<<Singleton>> Usineur
+	<<Singleton>> SiloUI
+	<<Singleton>> MoneyUI
+	<<static>> JsonHelper
+	<<enumeration>> TypeIntrant
+	<<enumeration>> EtatChamps
+	<<enumeration>> TravailUsine
+
+    Culture --> Vehicule : utilise
+    Silo --> Culture : stocke
+    Silo --> Produit : stocke
+    Garage --> Vehicule : gère
+    Ferme --> Champs : contient
+    Champs --> Culture : cultive
+    Champs --> Lot : appartient
+    Usine --> Intrant : consomme
+    Usine --> Produit : produit
+    Usineur --> Usine : gère
+    Animal --> Silo : produit viande
+    AdderLine --> Culture : affiche
+    AdderLine --> Vehicule : affiche
+    AdderLine --> UsineJson : affiche
+    SiloLine --> Culture : affiche
+    SiloLine --> Produit : affiche
+    TabsButton --> TabsGroup : appartient
+    MoneyUI --> Banque : observe
+    SiloUI --> Silo : observe
+    Garage --> VehiculeJson : charge
+    Silo --> CultureJson : charge
+    Silo --> ProduitJson : charge
+    Usineur --> UsineJson : charge
+    UsineJson --> IntrantJson : contient
+    Intrant --> TypeIntrant : utilise
+    Champs --> EtatChamps : a un état
+    Usine --> TravailUsine : a un statut
+    SiloLine -- UntitledClass
+    SiloLine -- UntitledClass2
+

@@ -3,6 +3,8 @@
 ## Description
 Ce projet est un jeu de simulation agricole développé en Unity utilisant C#. Le joueur gère une ferme en cultivant des champs, achetant des véhicules, construisant des usines de transformation et gérant ses ressources financières.
 
+Le diagramme de classe est disponible dans Assets/UML (PNG et Code).
+
 ## Fonctionnalités principales
 
 ### 🚜 Gestion des véhicules
