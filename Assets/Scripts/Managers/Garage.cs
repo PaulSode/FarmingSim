@@ -8,6 +8,8 @@ public class Garage : MonoBehaviour
 {
     public static Garage instance;
     public bool isLoaded =  false;
+    [SerializeField] private Transform contentPanel;
+    [SerializeField] private GameObject vehiculePrefab;
 
     public Dictionary<Vehicule, int> vehiculeList = new();
     
@@ -52,6 +54,27 @@ public class Garage : MonoBehaviour
 
         isLoaded = true;
         OnLoadComplete?.Invoke();
+        InitAdderDisplay();
+    }
+    
+    private void InitAdderDisplay()
+    {
+
+        foreach (KeyValuePair<Vehicule, int> kvp in vehiculeList)
+        {
+            var go = Instantiate(vehiculePrefab, contentPanel);
+            go.name = kvp.Key.nom;
+            var al = go.GetComponent<AdderLine>();
+            al.vehicule = kvp.Key;
+            al.usine = null; //ça devrait l'être de base mais je sais pas pourquoi ça l'est pas
+            al.text1.text = kvp.Key.nom;
+            al.text2.text = kvp.Key.prix + " pièces";
+            al.text3.text = "0 acheté.s";
+            al.text4.text = "0 disponible.s";
+
+            kvp.Key.adderLine = al;
+
+        }
     }
 
     public void AcheterVehicule(Vehicule vehicule)
@@ -63,6 +86,8 @@ public class Garage : MonoBehaviour
             if (!vehiculeList.ContainsKey(vehicule)) vehiculeList[vehicule] = 0;
 
             vehiculeList[vehicule]++;
+            vehicule.adderLine.text3.text = $"{++vehicule.quantiteAchete} acheté.s";
+            vehicule.adderLine.text4.text = $"{++vehicule.quantiteDispo} disponible.s";
         }
     }
 
