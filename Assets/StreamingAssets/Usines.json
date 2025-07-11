@@ -1,77 +1,107 @@
 [
   {
     "nom": "Moulin à huile",
-    "intrants": ["tournesol", "olive", "canola", "riz"],
+    "intrants": [
+      { "nom": "tournesol", "type": "Culture" },
+      { "nom": "olive", "type": "Culture" },
+      { "nom": "canola", "type": "Culture" },
+      { "nom": "riz", "type": "Culture" }
+    ],
     "produit": "huile",
     "multiplicateur": 2,
     "prix": 5000
   },
   {
     "nom": "Scierie",
-    "intrants": ["peuplier"],
+    "intrants": [
+      { "nom": "peuplier", "type": "Culture" }
+    ],
     "produit": "planches",
     "multiplicateur": 2,
     "prix": 4000
   },
   {
     "nom": "Fabrique de wagons",
-    "intrants": ["planches"],
+    "intrants": [
+      { "nom": "planches", "type": "Produit" }
+    ],
     "produit": "wagons",
     "multiplicateur": 4,
     "prix": 8000
   },
   {
     "nom": "Usine de jouets",
-    "intrants": ["planches"],
+    "intrants": [
+      { "nom": "planches", "type": "Produit" }
+    ],
     "produit": "jouets",
     "multiplicateur": 3,
     "prix": 7000
   },
   {
     "nom": "Moulin à grains",
-    "intrants": ["blé", "orge", "sorgho"],
+    "intrants": [
+      { "nom": "blé", "type": "Culture" },
+      { "nom": "orge", "type": "Culture" },
+      { "nom": "sorgho", "type": "Culture" }
+    ],
     "produit": "farine",
     "multiplicateur": 2,
     "prix": 4500
   },
   {
     "nom": "Raffinerie de sucre",
-    "intrants": ["betterave", "canne à sucre"],
+    "intrants": [
+      { "nom": "betterave", "type": "Culture" },
+      { "nom": "canne à sucre", "type": "Culture" }
+    ],
     "produit": "sucre",
     "multiplicateur": 2,
     "prix": 6000
   },
   {
     "nom": "Filature",
-    "intrants": ["coton"],
+    "intrants": [
+      { "nom": "coton", "type": "Culture" }
+    ],
     "produit": "tissu",
     "multiplicateur": 2,
     "prix": 5500
   },
   {
     "nom": "Atelier de couture",
-    "intrants": ["tissu"],
+    "intrants": [
+      { "nom": "tissu", "type": "Produit" }
+    ],
     "produit": "vêtements",
     "multiplicateur": 2,
     "prix": 7500
   },
   {
     "nom": "Boulangerie",
-    "intrants": ["sucre", "farine"],
+    "intrants": [
+      { "nom": "sucre", "type": "Produit" },
+      { "nom": "farine", "type": "Produit" }
+    ],
     "produit": "gâteau",
     "multiplicateur": 6,
     "prix": 9000
   },
   {
     "nom": "Usine de chips",
-    "intrants": ["pomme de terre", "huile"],
+    "intrants": [
+      { "nom": "pomme de terre", "type": "Culture" },
+      { "nom": "huile", "type": "Produit" }
+    ],
     "produit": "chips",
     "multiplicateur": 6,
     "prix": 8500
   },
   {
     "nom": "Cave à vin",
-    "intrants": ["raisin"],
+    "intrants": [
+      { "nom": "raisin", "type": "Culture" }
+    ],
     "produit": "vin",
     "multiplicateur": 2,
     "prix": 10000

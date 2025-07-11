@@ -12,6 +12,7 @@ public class AdderLine : MonoBehaviour
     
     public Culture culture;
     public Usineur.UsineJson usine;
+    public Vehicule vehicule;
     
     [SerializeField] private Button addButton;
 
@@ -27,14 +28,20 @@ public class AdderLine : MonoBehaviour
         }
     }
 
-    public void ChooseCulture()
+    public void Choose()
     {
-        Ferme.instance.CreerChamps(culture);
-    }
-    
-    public void ChooseUsine()
-    {
-        //Usineur.instance.CreerUsine(usine);
+        if (culture != null)
+        {
+            Ferme.instance.CreerChamps(culture);
+        }
+        else if (usine != null)
+        {
+            Usineur.instance.CreerUsine(usine.produit);
+        }
+        else
+        {
+            Garage.instance.AcheterVehicule(vehicule);
+        }
     }
 
     private void UpdateButton()

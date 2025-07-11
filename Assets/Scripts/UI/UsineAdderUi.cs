@@ -32,7 +32,7 @@ public class UsineAdderUI : MonoBehaviour
             al.text2.text = kvp.produit;
             if (kvp.intrants is { Count: > 0 })
             {
-                al.text3.text = kvp.intrants.Aggregate("", (current, v) => current + $"{v}\n");
+                al.text3.text = kvp.intrants.Aggregate("", (current, v) => current + $"{v.nom}\n");
             }
             al.text4.text = $"Multiplicateur : {kvp.multiplicateur}x";
             al.text5.text = kvp.prix + " pièces";

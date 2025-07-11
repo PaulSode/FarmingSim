@@ -1,13 +1,13 @@
 [
-  { "nom": "Huile", "prix": 50 },
-  { "nom": "Planches", "prix": 30 },
-  { "nom": "Wagons", "prix": 200 },
-  { "nom": "Jouets", "prix": 100 },
-  { "nom": "Farine", "prix": 40 },
-  { "nom": "Sucre", "prix": 35 },
-  { "nom": "Tissu", "prix": 60 },
-  { "nom": "Vêtements", "prix": 150 },
-  { "nom": "Gâteau", "prix": 180 },
-  { "nom": "Chips", "prix": 120 },
-  { "nom": "Vin", "prix": 250 }
+  { "nom": "Huile", "prix": 1 },
+  { "nom": "Planches", "prix": 1 },
+  { "nom": "Wagons", "prix": 1 },
+  { "nom": "Jouets", "prix": 1 },
+  { "nom": "Farine", "prix": 1 },
+  { "nom": "Sucre", "prix": 1 },
+  { "nom": "Tissu", "prix": 1 },
+  { "nom": "Vêtements", "prix": 1 },
+  { "nom": "Gâteau", "prix": 1 },
+  { "nom": "Chips", "prix": 1 },
+  { "nom": "Vin", "prix": 1 }
 ]

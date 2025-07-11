@@ -36,6 +36,7 @@ public class Champs : MonoBehaviour
         _startCooldown = 0f;
         nameText.text = $"Ferme #{number}";
         cultureText.text = culture.nom;
+        progressBar.fillAmount = 0f;
 
     }
 

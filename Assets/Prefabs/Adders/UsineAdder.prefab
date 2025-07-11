@@ -907,7 +907,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 732147107862880605}
         m_TargetAssemblyTypeName: AdderLine, Assembly-CSharp
-        m_MethodName: ChooseCulture
+        m_MethodName: Choose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

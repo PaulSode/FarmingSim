@@ -87,7 +87,7 @@ public class Silo : MonoBehaviour
     {
         var espaceDisponible = _maxStockage - GetTotalQuantite();
         var quantiteAjoutee = 0;
-        quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
+        quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, -GetCultureValue(culture));
 
         if (!cultures.TryAdd(culture, quantiteAjoutee))
         {
@@ -135,10 +135,13 @@ public class Silo : MonoBehaviour
         {
             var espaceDisponible = _maxStockage - GetTotalQuantite();
             var quantiteAjoutee = 0;
-            quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, 0);
+            quantiteAjoutee = quantite >= 0 ? Math.Min(quantite, espaceDisponible) : Math.Max(quantite, -GetProduitValue(produit));
 
             if (!produits.TryAdd(produit, quantiteAjoutee))
             {
+                if (quantiteAjoutee < 0)
+                    Banque.instance.AddMoney(produit.prix * -quantiteAjoutee);
+                
                 produits[produit] += quantiteAjoutee;
                 SiloUI.instance.UpdateLine(produit.nom, produits[produit]);
             }

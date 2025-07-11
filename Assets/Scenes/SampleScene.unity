@@ -851,7 +851,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 300, y: 350}
+  m_CellSize: {x: 300, y: 450}
   m_Spacing: {x: 45, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 4
@@ -4046,8 +4046,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLoaded: 0
   usinesJson: []
-  prefabUsine: {fileID: 3022195012220803181, guid: 35f22f4e0d576bb4994ac4e29eef7db4, type: 3}
-  contentPanel: {fileID: 0}
+  prefabUsine: {fileID: 6019860743496054747, guid: 582371cd43c5e804782f52f59eeaf689, type: 3}
+  contentPanel: {fileID: 6268276}
   usinesList: []
 --- !u!1 &1545671341
 GameObject:
