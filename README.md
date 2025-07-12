@@ -98,7 +98,7 @@ Possibilité de grouper des champs pour des opérations coordonnées. // Présen
 ## Installation et utilisation
 
 Depuis l'édieur :
-1. Ouvrir le projet dans Unity
+1. Ouvrir le projet dans Unity (Version 6000.1.10f1)
 2. Configurer les fichiers JSON dans le dossier StreamingAssets
 3. Lancer le jeu depuis Unity
 4. Commencer par acheter des véhicules (racteur, Remorque, Moissonneuse batteuse, Semeuse, Fertilisateur), créer des champs (Blé) et acheter une usine (Moulin à grain)
