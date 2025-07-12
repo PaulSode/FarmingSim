@@ -127,6 +127,7 @@ public class Champs : MonoBehaviour
                 Debug.Log("Pas de véhicule pour labourer !");
                 return;
             }
+            LibererVehiculesEtape("Semer");
             state = Etat.Fertilise;
             cooldown += 20f;
             _startCooldown += 20f;

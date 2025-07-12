@@ -27,6 +27,7 @@ public class Usine : MonoBehaviour
     
     public List<Usineur.Intrant> entrants;
     public Produit produit;
+    public ModeProduction mode;
 
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text usineText;
@@ -45,7 +46,7 @@ public class Usine : MonoBehaviour
 
     private void Update()
     {
-        if (!Silo.instance.HasSpace()) status = Travail.Pause;
+        if (!Silo.instance.HasSpace() && status == Travail.Production) status = Travail.Pause;
         
         if (_cooldown > 0 && status == Travail.Production)
         {
@@ -77,25 +78,51 @@ public class Usine : MonoBehaviour
         status = Travail.Production;
         _cooldown = 1f;
 
-        var quantites = entrants.Select(i => i.type switch
+        if (mode == ModeProduction.AND)
         {
-            Usineur.TypeIntrant.Culture => Silo.instance.GetCultureValue(i.culture),
-            Usineur.TypeIntrant.Produit => Silo.instance.GetProduitValue(i.produit),
-            _ => 0
-        }).ToList();
+            var quantites = entrants.Select(i => i.type switch
+            {
+                Usineur.TypeIntrant.Culture => Silo.instance.GetCultureValue(i.culture),
+                Usineur.TypeIntrant.Produit => Silo.instance.GetProduitValue(i.produit),
+                _ => 0
+            }).ToList();
 
-        if (quantites.Any(q => q <= 0)) return;
+            if (quantites.Any(q => q <= 0)) return;
 
-        minEntrant = Mathf.Min(quantites.Min(), 100);
+            minEntrant = Mathf.Min(quantites.Min(), 100);
 
-        foreach (var i in entrants)
+            foreach (var i in entrants)
+            {
+                if (i.type == Usineur.TypeIntrant.Culture)
+                    Silo.instance.AddCulture(i.culture, -minEntrant);
+                else if (i.type == Usineur.TypeIntrant.Produit)
+                    Silo.instance.AddProduit(i.produit, -minEntrant);
+            }
+        }
+        else // mode == OR
         {
-            if (i.type == Usineur.TypeIntrant.Culture)
-                Silo.instance.AddCulture(i.culture, -minEntrant);
-            else if (i.type == Usineur.TypeIntrant.Produit)
-                Silo.instance.AddProduit(i.produit, -minEntrant);
+            foreach (var i in entrants)
+            {
+                int quantite = i.type switch
+                {
+                    Usineur.TypeIntrant.Culture => Silo.instance.GetCultureValue(i.culture),
+                    Usineur.TypeIntrant.Produit => Silo.instance.GetProduitValue(i.produit),
+                    _ => 0
+                };
+
+                if (quantite > 0)
+                {
+                    minEntrant = Mathf.Min(quantite, 100);
+                    if (i.type == Usineur.TypeIntrant.Culture)
+                        Silo.instance.AddCulture(i.culture, -minEntrant);
+                    else if (i.type == Usineur.TypeIntrant.Produit)
+                        Silo.instance.AddProduit(i.produit, -minEntrant);
+                    break;
+                }
+            }
         }
     }
+
 
     private void FinirProduire()
     {
@@ -113,16 +140,30 @@ public class Usine : MonoBehaviour
             _ => 0
         });
 
-        if (quantites.All(q => q > 0) && Silo.instance.HasSpace())
+        bool peutProduire = mode switch
+        {
+            ModeProduction.AND => quantites.All(q => q > 0),
+            ModeProduction.OR => quantites.Any(q => q > 0),
+            _ => false
+        };
+        Debug.Log(mode);
+        Debug.Log(peutProduire);
+
+        if (peutProduire && Silo.instance.HasSpace())
         {
             progressButton.interactable = true;
             return true;
         }
-        else
-        {
-            progressButton.interactable = false;
-            return false;
-        }
+
+        progressButton.interactable = false;
+        return false;
     }
 
+
+    
+    public enum ModeProduction
+    {
+        AND,
+        OR
+    }
 }

@@ -9,7 +9,8 @@
     ],
     "produit": "huile",
     "multiplicateur": 2,
-    "prix": 5000
+    "prix": 5000,
+    "mode": "OR"
   },
   {
     "nom": "Scierie",
@@ -18,7 +19,8 @@
     ],
     "produit": "planches",
     "multiplicateur": 2,
-    "prix": 4000
+    "prix": 4000,
+    "mode": "AND"
   },
   {
     "nom": "Fabrique de wagons",
@@ -27,7 +29,8 @@
     ],
     "produit": "wagons",
     "multiplicateur": 4,
-    "prix": 8000
+    "prix": 8000,
+    "mode": "AND"
   },
   {
     "nom": "Usine de jouets",
@@ -36,7 +39,8 @@
     ],
     "produit": "jouets",
     "multiplicateur": 3,
-    "prix": 7000
+    "prix": 7000,
+    "mode": "AND"
   },
   {
     "nom": "Moulin à grains",
@@ -47,7 +51,8 @@
     ],
     "produit": "farine",
     "multiplicateur": 2,
-    "prix": 4500
+    "prix": 4500,
+    "mode": "OR"
   },
   {
     "nom": "Raffinerie de sucre",
@@ -57,7 +62,8 @@
     ],
     "produit": "sucre",
     "multiplicateur": 2,
-    "prix": 6000
+    "prix": 6000,
+    "mode": "AND"
   },
   {
     "nom": "Filature",
@@ -66,7 +72,8 @@
     ],
     "produit": "tissu",
     "multiplicateur": 2,
-    "prix": 5500
+    "prix": 5500,
+    "mode": "AND"
   },
   {
     "nom": "Atelier de couture",
@@ -75,7 +82,8 @@
     ],
     "produit": "vêtements",
     "multiplicateur": 2,
-    "prix": 7500
+    "prix": 7500,
+    "mode": "AND"
   },
   {
     "nom": "Boulangerie",
@@ -85,7 +93,8 @@
     ],
     "produit": "gâteau",
     "multiplicateur": 6,
-    "prix": 9000
+    "prix": 9000,
+    "mode": "AND"
   },
   {
     "nom": "Usine de chips",
@@ -95,7 +104,8 @@
     ],
     "produit": "chips",
     "multiplicateur": 6,
-    "prix": 8500
+    "prix": 8500,
+    "mode": "AND"
   },
   {
     "nom": "Cave à vin",
@@ -104,6 +114,7 @@
     ],
     "produit": "vin",
     "multiplicateur": 2,
-    "prix": 10000
+    "prix": 10000,
+    "mode": "AND"
   }
 ]

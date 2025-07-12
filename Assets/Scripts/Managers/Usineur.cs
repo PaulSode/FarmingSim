@@ -149,6 +149,8 @@ public void CreerUsine(string produit)
     usineScript.entrants = intrants;
     usineScript.multiplicateur = usineACreer.multiplicateur;
     usineScript.number = _usineNumber++;
+    usineScript.mode = usineACreer.mode == "OR" ? Usine.ModeProduction.OR : Usine.ModeProduction.AND;
+    
     usinesList.Add(usineScript);
 }
 
@@ -162,6 +164,7 @@ public void CreerUsine(string produit)
         public List<IntrantJson> intrants;
         public string produit;
         public int prix;
+        public string mode;
     }
     [Serializable]
     public class IntrantJson
